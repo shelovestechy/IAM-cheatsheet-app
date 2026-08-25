@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="IAM-opas auttaa ratkaisemaan identiteetin- ja käyttöoikeuksienhallinnan ongelmia sekä opiskelemaan SC-300-kokeeseen."
+      content="Staattinen suomenkielinen harjoitussovellus Microsoft Entra- ja IAM-skenaarioihin."
     />
     <title>IAM-opas — Ratkaise. Ymmärrä. Opi.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,7 @@
           <span>IAM-opas</span>
         </a>
         <nav aria-label="Päänavigaatio">
-          <a class="active" href="#kysy">Kysy</a>
+          <a class="active" href="#kysy">Harjoittele</a>
           <a href="#aiheet">Aiheet</a>
           <a href="#opiskelu">Opiskelu</a>
         </nav>
@@ -42,12 +42,14 @@
           <div class="eyebrow"><span></span> Microsoft Entra &amp; Identity</div>
           <h1>Ratkaise. Ymmärrä. <em>Opi.</em></h1>
           <p class="hero-copy">
-            Kuvaile IAM-ongelmasi tai kysy SC-300-aiheesta. Saat selkeän,
-            vaiheittaisen vastauksen luotettavine lähteineen.
+            Kirjoita muutama IAM-avainsana tai valitse esimerkki. Sovellus ohjaa
+            yhteen kuudesta paikallisesta harjoituspolusta.
           </p>
+          <p class="mode-note">Staattinen opiskelusovellus · ei tekoälyä · ei yhteyttä Microsoft-tenanttiin</p>
+          <p class="lab-note">Harjoitusympäristö: fiktiivinen Ankkalinna Identity Lab Oy. Yhteys tuotantoon: erittäin kuvitteellinen.</p>
 
           <form class="question-card" id="question-form">
-            <label for="question">Miten voimme auttaa?</label>
+            <label for="question">Mitä haluat harjoitella?</label>
             <textarea
               id="question"
               rows="3"
@@ -69,6 +71,7 @@
             <button data-question="Miten estän vanhat tunnistautumisprotokollat?">Estä legacy authentication</button>
             <button data-question="Miten suunnittelen access review -prosessin vieraskäyttäjille?">Vieraskäyttäjien access review</button>
           </div>
+          <p class="match-message" id="match-message" role="status" hidden>En tunnistanut aihetta. Kokeile sanoja PIM, Conditional Access, access review, riski, legacy authentication, käyttäjät tai ryhmät.</p>
         </section>
 
         <section class="result-section" id="result" hidden aria-live="polite">
@@ -77,7 +80,7 @@
               <span class="section-kicker">Ehdotettu ratkaisu</span>
               <h2 id="result-title">Estä vanhat tunnistautumisprotokollat</h2>
             </div>
-            <span class="confidence"><span></span> Lähteet tarkistettu</span>
+            <span class="confidence"><span></span> Microsoft Learn -lähteet mukana</span>
           </div>
 
           <div class="result-grid">
@@ -98,7 +101,6 @@
               <div id="result-sources"></div>
               <div class="source-legend">
                 <span><i class="official"></i> Virallinen</span>
-                <span><i class="community"></i> Yhteisö</span>
               </div>
             </aside>
           </div>
@@ -107,8 +109,8 @@
         <section class="topics-section" id="aiheet">
           <div class="section-intro">
             <div>
-              <span class="section-kicker">SC-300-oppimispolku</span>
-              <h2>Valitse aihe ja syvennä osaamistasi</h2>
+              <span class="section-kicker">IAM-aiheet</span>
+              <h2>Valitse yksi neljästä aihealueesta</h2>
             </div>
             <p>Harjoittele kokeen keskeisiä osa-alueita käytännön tilanteiden avulla.</p>
           </div>
@@ -121,7 +123,7 @@
               <span class="topic-number">01</span>
               <h3>Identiteettien hallinta</h3>
               <p>Käyttäjät, ryhmät, ulkoiset identiteetit ja hallinnolliset yksiköt.</p>
-              <div class="topic-meta"><span>12 aihetta</span><span>30 % kokeesta</span></div>
+              <div class="topic-meta"><span>1 paikallinen harjoitus</span></div>
               <button data-question="Miten hallitsen Microsoft Entra -käyttäjiä ja ryhmiä tehokkaasti?">Aloita aihe <span>→</span></button>
             </article>
 
@@ -132,7 +134,7 @@
               <span class="topic-number">02</span>
               <h3>Todennus &amp; käyttöoikeudet</h3>
               <p>MFA, Conditional Access, authentication methods ja Identity Protection.</p>
-              <div class="topic-meta"><span>15 aihetta</span><span>25 % kokeesta</span></div>
+              <div class="topic-meta"><span>1 paikallinen harjoitus</span></div>
               <button data-question="Miten suunnittelen turvallisen Conditional Access -käyttöönoton?">Aloita aihe <span>→</span></button>
             </article>
 
@@ -143,7 +145,7 @@
               <span class="topic-number">03</span>
               <h3>Identity Governance</h3>
               <p>PIM, entitlement management, access reviews ja lifecycle workflows.</p>
-              <div class="topic-meta"><span>10 aihetta</span><span>25 % kokeesta</span></div>
+              <div class="topic-meta"><span>1 paikallinen harjoitus</span></div>
               <button data-question="Miten otan PIM-rooliaktivoinnin käyttöön?">Aloita aihe <span>→</span></button>
             </article>
 
@@ -154,7 +156,7 @@
               <span class="topic-number">04</span>
               <h3>Valvonta &amp; ylläpito</h3>
               <p>Lokit, workbookit, diagnostiikka ja identiteettiympäristön seuranta.</p>
-              <div class="topic-meta"><span>8 aihetta</span><span>20 % kokeesta</span></div>
+              <div class="topic-meta"><span>1 paikallinen harjoitus</span></div>
               <button data-question="Miten valvon riskialttiita kirjautumisia Microsoft Entrassa?">Aloita aihe <span>→</span></button>
             </article>
           </div>
@@ -173,9 +175,10 @@
       <footer>
         <a class="brand footer-brand" href="#"><span class="brand-mark"><span></span><span></span><span></span></span><span>IAM-opas</span></a>
         <p>Oppimisen tueksi — tarkista tuotantopäätökset aina Microsoftin ajantasaisesta dokumentaatiosta.</p>
-        <span>MVP 0.1</span>
+        <span>Learning build 0.2</span>
       </footer>
     </div>
+    <script src="logic.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

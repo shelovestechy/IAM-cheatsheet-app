@@ -12,8 +12,7 @@ const solutions = {
     note: "Säilytä vähintään kaksi pilvipohjaista emergency access -tiliä PIM- ja Conditional Access -käytäntöjen ulkopuolella.",
     sources: [
       ["official", "Microsoft Learn", "What is Microsoft Entra PIM?", "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"],
-      ["official", "Microsoft Learn", "Configure role settings in PIM", "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings"],
-      ["community", "Yhteisökokemus", "Käyttöönoton käytännön havaintoja — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Configure role settings in PIM", "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings"]
     ]
   },
   legacy: {
@@ -29,8 +28,7 @@ const solutions = {
     note: "Sulje emergency access -tilit käytännön ulkopuolelle. Varmista myös palvelutilien ja vanhojen laitteiden riippuvuudet ennen estämistä.",
     sources: [
       ["official", "Microsoft Learn", "Block legacy authentication with Conditional Access", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication"],
-      ["official", "Microsoft Learn", "Analyze Conditional Access policies with report-only mode", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only"],
-      ["community", "Yhteisökokemus", "Legacy auth -käyttöönoton havaintoja — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Analyze Conditional Access policies with report-only mode", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-report-only"]
     ]
   },
   review: {
@@ -46,8 +44,7 @@ const solutions = {
     note: "Automaattinen poisto kannattaa pilotoida rajatulla ryhmällä. Tarkista lisenssivaatimukset ennen laajaa käyttöönottoa.",
     sources: [
       ["official", "Microsoft Learn", "What are Microsoft Entra access reviews?", "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview"],
-      ["official", "Microsoft Learn", "Create an access review of groups and applications", "https://learn.microsoft.com/en-us/entra/id-governance/create-access-review"],
-      ["community", "Yhteisökokemus", "Guest governance -keskusteluja — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Create an access review of groups and applications", "https://learn.microsoft.com/en-us/entra/id-governance/create-access-review"]
     ]
   },
   monitor: {
@@ -63,8 +60,7 @@ const solutions = {
     note: "Riskikäytännön vaikutus riippuu lisensseistä ja tunnistautumismenetelmistä. Testaa käytäntö report-only-tilassa.",
     sources: [
       ["official", "Microsoft Learn", "What is Microsoft Entra ID Protection?", "https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection"],
-      ["official", "Microsoft Learn", "Configure and enable risk policies", "https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies"],
-      ["community", "Yhteisökokemus", "Identity Protection -havaintoja — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Configure and enable risk policies", "https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies"]
     ]
   },
   identity: {
@@ -80,8 +76,7 @@ const solutions = {
     note: "Vältä yksittäisiä suoria käyttöoikeusmäärityksiä, koska niiden omistajuus ja elinkaari jäävät helposti epäselviksi.",
     sources: [
       ["official", "Microsoft Learn", "Manage Microsoft Entra groups and group membership", "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups"],
-      ["official", "Microsoft Learn", "Administrative units in Microsoft Entra ID", "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units"],
-      ["community", "Yhteisökokemus", "Entra-hallinnan käytäntöjä — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Administrative units in Microsoft Entra ID", "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units"]
     ]
   },
   conditional: {
@@ -97,8 +92,7 @@ const solutions = {
     note: "Varmista emergency access -tilit ja vältä kaikkien käytäntöjen muuttamista samanaikaisesti.",
     sources: [
       ["official", "Microsoft Learn", "Conditional Access deployment plan", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/plan-conditional-access"],
-      ["official", "Microsoft Learn", "Conditional Access policy templates", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policy-common"],
-      ["community", "Yhteisökokemus", "Conditional Access -havaintoja — varmista erikseen", "https://www.reddit.com/r/AZURE/"]
+      ["official", "Microsoft Learn", "Conditional Access policy templates", "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policy-common"]
     ]
   }
 };
@@ -106,19 +100,22 @@ const solutions = {
 const form = document.querySelector("#question-form");
 const input = document.querySelector("#question");
 const result = document.querySelector("#result");
+const matchMessage = document.querySelector("#match-message");
 
 function selectSolution(question) {
-  const value = question.toLowerCase();
-  if (value.includes("pim") || value.includes("rooliaktiv")) return solutions.pim;
-  if (value.includes("legacy") || value.includes("vanh") || value.includes("protokoll")) return solutions.legacy;
-  if (value.includes("review") || value.includes("vieras")) return solutions.review;
-  if (value.includes("riski") || value.includes("valvo") || value.includes("loki")) return solutions.monitor;
-  if (value.includes("conditional") || value.includes("mfa") || value.includes("todenn")) return solutions.conditional;
-  return solutions.identity;
+  const key = window.IamGuideLogic.selectSolutionKey(question);
+  return key ? solutions[key] : null;
 }
 
 function showSolution(question) {
   const solution = selectSolution(question);
+  if (!solution) {
+    result.hidden = true;
+    matchMessage.hidden = false;
+    return;
+  }
+
+  matchMessage.hidden = true;
   document.querySelector("#result-title").textContent = solution.title;
   document.querySelector("#result-summary").textContent = solution.summary;
   document.querySelector("#result-note").textContent = solution.note;
@@ -154,8 +151,17 @@ document.querySelectorAll("[data-question]").forEach((button) => {
   });
 });
 
+const exerciseQuestions = [
+  "Miten otan PIM-rooliaktivoinnin käyttöön?",
+  "Miten estän vanhat tunnistautumisprotokollat?",
+  "Miten suunnittelen access review -prosessin vieraskäyttäjille?",
+  "Miten valvon riskialttiita kirjautumisia Microsoft Entrassa?",
+  "Miten hallitsen Microsoft Entra -käyttäjiä ja ryhmiä tehokkaasti?",
+  "Miten suunnittelen turvallisen Conditional Access -käyttöönoton?"
+];
+
 document.querySelector("#daily-question").addEventListener("click", () => {
-  input.value = "Miten suunnittelen turvallisen Conditional Access -käyttöönoton?";
+  input.value = exerciseQuestions[Math.floor(Math.random() * exerciseQuestions.length)];
   showSolution(input.value);
 });
 

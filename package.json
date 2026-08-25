@@ -1,0 +1,9 @@
+{
+  "name": "iam-scenario-guide",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A static Finnish-language IAM scenario learning app",
+  "scripts": {
+    "test": "node --test"
+  }
+}
