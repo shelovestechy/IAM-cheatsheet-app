@@ -4,6 +4,8 @@ A small Finnish-language study app for Microsoft Entra and identity topics.
 
 The app contains six local IAM scenarios. A user can choose an example or write a few keywords, and the app opens the closest matching study path with practical steps and Microsoft Learn links.
 
+🌐 [Open the live IAM Scenario Guide](https://shelovestechy.github.io/IAM-cheatsheet-app/)
+
 This is a static learning tool. It is not an AI assistant, it does not connect to a Microsoft tenant and it does not make production changes. The answers are written into the application. Very calm technology, which is sometimes exactly what an IAM lab needs.
 
 ## What works now
